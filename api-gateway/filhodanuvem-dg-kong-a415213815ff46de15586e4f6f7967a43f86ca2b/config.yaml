@@ -1,0 +1,41 @@
+services:
+- name: payments
+  url: http://localhost:3001
+  plugins:
+    - name: jwt_auth # API bloqueia requisições sem token JWT válido usando o secret definido
+      input:
+        secret: "cloudsecret"
+        key_in_header: true # se o token JWT estiver no header
+        key_in_query: false # se o token JWT estiver na query
+        key_name: "Authorization"
+    - name: request_size_limiting # API bloqueia requisições com payload maior que x bytes
+      input:
+        allowed_payload_size: 100
+    - name: http_log # API loga todas as requisições
+
+  routes:
+    - name: create-payment
+      paths:
+      - /payments
+      methods:
+      - POST
+    - name: get-payment
+      paths:
+      - /payments/{id}
+      methods:
+      - GET
+
+- name: shippings
+  url: http://localhost:3002
+  plugins:
+    - name: http_log
+    - name: add_header # API adiciona header customizado
+      input:
+        X-Service: "custom-header-value"
+  routes:
+    - name: create-shipping
+      paths:
+      - /shippings
+      methods:
+      - POST
+

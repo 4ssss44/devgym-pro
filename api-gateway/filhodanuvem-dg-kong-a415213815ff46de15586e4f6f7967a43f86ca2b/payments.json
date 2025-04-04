@@ -1,0 +1,6 @@
+{
+  "payments": [
+    { "id": 1, "user_id": "filhodanuvem", "amount": 17.00 },
+    { "id": 2, "user_id": "filhodanuvem", "amount": 23.00 }
+  ]
+}

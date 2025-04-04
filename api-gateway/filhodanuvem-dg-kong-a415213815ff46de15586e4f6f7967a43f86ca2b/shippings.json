@@ -1,0 +1,5 @@
+{
+  "shippings": [
+    { "id": 1, "paymennt_id": 2, "status" : "shipped"}
+  ]
+}

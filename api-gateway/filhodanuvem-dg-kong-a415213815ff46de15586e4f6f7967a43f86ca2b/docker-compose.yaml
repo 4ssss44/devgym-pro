@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  payments:
+    image: node:current-alpine3.17
+    command: npx json-server --watch /db.json --port 3001 --host 0.0.0.0
+    volumes:
+      - ./payments.json:/db.json
+    ports:
+      - 3001:3001
+  shippigngs:
+    image: node:current-alpine3.17
+    command: npx json-server --watch /db.json --port 3002 --host 0.0.0.0
+    volumes:
+      - ./shippings.json:/db.json
+    ports:
+      - 3002:3002
