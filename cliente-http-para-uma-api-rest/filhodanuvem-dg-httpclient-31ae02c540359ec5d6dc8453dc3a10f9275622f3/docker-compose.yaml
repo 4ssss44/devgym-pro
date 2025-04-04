@@ -1,0 +1,6 @@
+version: '3'
+services:
+  api:
+    image: 'devgymbr/dg-kubeapi:9777542381a884289d28b36e0580c84816850dd5'
+    ports:
+      - '3000:8080'
